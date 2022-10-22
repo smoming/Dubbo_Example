@@ -1,0 +1,17 @@
+dubbo:
+    application:
+        name: user-service-provider
+    monitor:
+        protocol: registry
+    protocol:
+        name: dubbo
+        port: 20888
+    registry:
+        address: 127.0.0.1:2181
+        protocol: zookeeper
+spring:
+    datasource: 
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://root@localhost:3306/example?serverTimezone=Asia/Taipei&useSSL=false&allowPublicKeyRetrieval=true
+        name: root
+        password: root

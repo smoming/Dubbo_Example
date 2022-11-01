@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import per.mike.example.face.bean.ChenniPo;
-import per.mike.example.face.dao.ChenniDao;
+import per.mike.example.face.bean.OrderPo;
+import per.mike.example.face.dao.OrderDao;
 
 /**
  * @author DXC Mike
@@ -16,7 +16,7 @@ import per.mike.example.face.dao.ChenniDao;
  * @remark
  */
 @Service
-public class ChenniDaoImpl implements ChenniDao {
+public class OrderDaoImpl implements OrderDao {
 
     /** Data source */
     @Autowired
@@ -31,8 +31,8 @@ public class ChenniDaoImpl implements ChenniDao {
      */
     @Override
     @Transactional
-    public void add(ChenniPo po) {
-        String sql = "INSERT INTO TB_CHENNI (CA,CB) VALUES ('" + po.getCa() + "', '" + po.getCb() + "')";
+    public void add(OrderPo po) {
+        String sql = "INSERT INTO `order` (order_id,product_id,amount) VALUES ('" + po.getOrderId() + "', '" + po.getProductId() + "', " + po.getAmount() + ")";
         geJdbcTemplate().update(sql);
     }
 
@@ -41,8 +41,8 @@ public class ChenniDaoImpl implements ChenniDao {
      */
     @Override
     @Transactional
-    public void upd(ChenniPo po) {
-        String sql = "UPDATE TB_CHENNI SET CB = '" + po.getCb() + "' WHERE CA = '" + po.getCa() + "'";
+    public void upd(OrderPo po) {
+        String sql = "UPDATE `order` SET product_id = '" + po.getProductId() + "', amount = " + po.getAmount() + " WHERE order_id = '" + po.getOrderId() + "'";
         geJdbcTemplate().update(sql);
     }
 
@@ -51,8 +51,8 @@ public class ChenniDaoImpl implements ChenniDao {
      */
     @Override
     @Transactional
-    public void del(ChenniPo po) {
-        String sql = "DELETE FROM TB_CHENNI WHERE CA = '" + po.getCa() + "'";
+    public void del(String orderId) {
+        String sql = "DELETE FROM `order` WHERE order_id = '" + orderId + "'";
         geJdbcTemplate().update(sql);
     }
 

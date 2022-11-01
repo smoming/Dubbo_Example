@@ -3,12 +3,12 @@ package per.mike.example.consumer.ctrl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import per.mike.example.consumer.service.MikeAndChenniService;
+import per.mike.example.consumer.service.OrderTxnService;
 import per.mike.example.face.bean.UserAddress;
 import per.mike.example.face.service.OrderSerice;
 
@@ -17,7 +17,8 @@ import per.mike.example.face.service.OrderSerice;
  * @date 2022年10月16日
  * @remark
  */
-@Controller
+@RequestMapping("/product")
+@RestController
 public class OrderController {
 
     @Autowired
@@ -30,19 +31,19 @@ public class OrderController {
     }
 
     @Autowired
-    MikeAndChenniService macSerice;
+    OrderTxnService macSerice;
 
     @ResponseBody
-    @RequestMapping("/doTx1")
-    public String doTx1() {
-        macSerice.add("MA", "MA1", "CA", "CA1");
-        return "doTx1 success~";
+    @RequestMapping("/doAddTxn")
+    public String doAddTxn() {
+        macSerice.doAddTxn();
+        return "doAddTxn success~";
     }
 
     @ResponseBody
-    @RequestMapping("/doTx2")
-    public String doTx2() {
+    @RequestMapping("/doTxn")
+    public String doTxn() {
         macSerice.doTxn();
-        return "doTx2 success~";
+        return "doTxn success~";
     }
 }

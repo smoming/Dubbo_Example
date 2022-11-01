@@ -8,8 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import per.mike.example.face.bean.MikePo;
-import per.mike.example.face.dao.MikeDao;
+import per.mike.example.face.bean.InventoryPo;
+import per.mike.example.face.dao.InventoryDao;
 
 /**
  * @author DXC Mike
@@ -18,7 +18,7 @@ import per.mike.example.face.dao.MikeDao;
  */
 @DubboService
 @Component
-public class MikeDaoImpl implements MikeDao {
+public class InventoryDaoImpl implements InventoryDao {
 
     /** Data source */
     @Autowired
@@ -33,8 +33,8 @@ public class MikeDaoImpl implements MikeDao {
      */
     @Override
     @Transactional
-    public void add(MikePo po) {
-        String sql = "INSERT INTO TB_MIKE (CA,CB) VALUES ('" + po.getCa() + "', '" + po.getCb() + "')";
+    public void add(InventoryPo po) {
+        String sql = "INSERT INTO inventory (product_id,amount) VALUES ('" + po.getProductId() + "', '" + po.getAmount() + "')";
         geJdbcTemplate().update(sql);
     }
 
@@ -43,8 +43,8 @@ public class MikeDaoImpl implements MikeDao {
      */
     @Override
     @Transactional
-    public void upd(MikePo po) {
-        String sql = "UPDATE TB_MIKE SET CB = '" + po.getCb() + "' WHERE CA = '" + po.getCa() + "'";
+    public void upd(InventoryPo po) {
+        String sql = "UPDATE inventory SET amount = '" + po.getAmount() + "' WHERE product_id = '" + po.getProductId() + "'";
         geJdbcTemplate().update(sql);
     }
 
@@ -53,8 +53,8 @@ public class MikeDaoImpl implements MikeDao {
      */
     @Override
     @Transactional
-    public void del(MikePo po) {
-        String sql = "DELETE FROM TB_MIKE WHERE CA = '" + po.getCa() + "'";
+    public void del(String productId) {
+        String sql = "DELETE FROM inventory WHERE product_id = '" + productId + "'";
         geJdbcTemplate().update(sql);
     }
 

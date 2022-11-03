@@ -1,0 +1,3 @@
+docker pull apache/dubbo-admin
+
+docker-compose -f docker_compose_dubbo_admin.yml up -d

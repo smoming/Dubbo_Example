@@ -6,7 +6,7 @@ services:
     ports:
       - 2181:2181
   dubbo-admin:
-    image: apache/dubbo-admin
+    image: apache/dubbo-admin:0.4.0
     container_name: dubbo-admin
     # 等待zk启动后再启动
     depends_on:
